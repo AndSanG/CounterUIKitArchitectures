@@ -8,9 +8,22 @@
 import UIKit
 
 final class CounterView: UIView {
-
-    let label = UILabel()
-    let button = UIButton(type: .system)
+    // exposes texts and actions
+    var action: (() -> Void)?
+    var text: String? {
+        didSet {
+            label.text = text
+        }
+    }
+    var buttonTitle: String? {
+        didSet {
+            button.setTitle(buttonTitle, for: .normal)
+        }
+    }
+    
+    // private implementation of the view
+    private let label = UILabel()
+    private let button = UIButton(type: .system)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +36,10 @@ final class CounterView: UIView {
     }
 
     private func setup() {
+        label.text = text
         label.textAlignment = .center
-        button.setTitle("Increment", for: .normal)
+        button.setTitle(buttonTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleIncrementTap), for: .touchUpInside)
 
         let stack = UIStackView(arrangedSubviews: [label, button])
         stack.axis = .vertical
@@ -34,12 +49,14 @@ final class CounterView: UIView {
         addSubview(stack)
         stack.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stack.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stack.centerYAnchor.constraint(equalTo: centerYAnchor)
+            stack.topAnchor.constraint(equalTo: topAnchor),
+            stack.leadingAnchor.constraint(equalTo: leadingAnchor),
+            stack.bottomAnchor.constraint(equalTo: bottomAnchor),
+            stack.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
-
-    func update(with value: Int) {
-        label.text = "Count: \(value)"
+    // handle user action
+    @objc private func handleIncrementTap() {
+        action?()
     }
 }

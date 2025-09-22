@@ -13,17 +13,21 @@ class MVCCounterViewController: UIViewController {
     //MARK: View
     private let counterView = CounterView()
     
-    //MARK: 
+    //MARK: VC lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        counterView.text = formattedDisplayText(with: counter)
+        counterView.buttonTitle = "Increment MVC"
         view.addSubview(counterView)
         counterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             counterView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             counterView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        counterView.update(with: counter.value)
-        counterView.button.addTarget(self, action: #selector(incrementTapped), for: .touchUpInside)
+        
+        counterView.action = { [weak self] in
+            self?.incrementTapped()
+        }
     }
     
     // On user action
@@ -31,10 +35,12 @@ class MVCCounterViewController: UIViewController {
         // Update model
         counter.value += 1
         // Change the view
-        counterView.update(with: counter.value)
+        counterView.text = formattedDisplayText(with: counter)
     }
     
-    
+    private func formattedDisplayText(with counter: Counter) -> String{
+        "Counter MVC: \(counter.value)"
+    }
     /*
      // MARK: - Navigation
      
@@ -46,4 +52,3 @@ class MVCCounterViewController: UIViewController {
      */
 
 }
-
