@@ -11,14 +11,10 @@ final class CounterView: UIView {
     // exposes texts and actions
     var action: (() -> Void)?
     var text: String? {
-        didSet {
-            label.text = text
-        }
+        didSet { updateLabelText(with: text) }
     }
     var buttonTitle: String? {
-        didSet {
-            button.setTitle(buttonTitle, for: .normal)
-        }
+        didSet { updateButtonTitle(with: buttonTitle) }
     }
     
     // private implementation of the view
@@ -36,7 +32,7 @@ final class CounterView: UIView {
     }
 
     private func setup() {
-        label.text = text
+        updateLabelText(with: text)
         label.textAlignment = .center
         button.setTitle(buttonTitle, for: .normal)
         button.addTarget(self, action: #selector(handleIncrementTap), for: .touchUpInside)
@@ -59,4 +55,25 @@ final class CounterView: UIView {
     @objc private func handleIncrementTap() {
         action?()
     }
+    
+    private func updateLabelText(with text: String?) {
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateLabelText(with: text)
+            }
+            return
+        }
+        label.text = text
+    }
+    
+    private func updateButtonTitle(with title: String?) {
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async { [weak self] in
+                self?.updateButtonTitle(with: title)
+            }
+            return
+        }
+        button.setTitle(title, for: .normal)
+    }
+    // only
 }
