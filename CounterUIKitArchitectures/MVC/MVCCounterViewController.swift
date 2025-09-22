@@ -17,7 +17,7 @@ class MVCCounterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         counterView.text = formattedDisplayText(with: counter)
-        counterView.buttonTitle = "Increment MVC"
+        counterView.buttonTitle = "Increment"
         view.addSubview(counterView)
         counterView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -39,7 +39,7 @@ class MVCCounterViewController: UIViewController {
     }
     
     private func formattedDisplayText(with counter: Counter) -> String{
-        "Counter MVC: \(counter.value)"
+        "Counter with MVC: \(counter.value)"
     }
     /*
      // MARK: - Navigation
