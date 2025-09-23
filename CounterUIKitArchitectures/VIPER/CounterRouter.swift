@@ -24,7 +24,7 @@ final class CounterRouter: CounterRouterInput {
 enum CounterModule {
     static func build() -> UIViewController {
         let view = CounterViewController()
-        let interactor = CounterInteractor()
+        let interactor = CounterInteractor(initialCount: 5)
         let router = CounterRouter()
         let presenter = CounterPresenter(interactor: interactor, router: router)
         

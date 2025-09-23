@@ -7,8 +7,14 @@
 
 final class CounterInteractor: CounterInteractorInput {
     weak var output: CounterInteractorOutput?
-
-    private var counter = Counter(value: 0)
+    
+    private let initialCount: Int
+    private var counter: Counter
+    
+    init(initialCount: Int = 0){
+        self.initialCount = initialCount
+        counter = Counter(value: initialCount)
+    }
 
     func loadInitial() {
         output?.didLoadCurrentCount(counter.value)

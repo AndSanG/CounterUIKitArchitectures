@@ -10,9 +10,8 @@ import UIKit
 final class CounterViewController: UIViewController, CounterViewInput {
     
     var output: CounterViewOutput!
-
-    private let label = UILabel()
-    private let incButton = UIButton(type: .system)
+    
+    private let counterView = CounterView()
     private let resetButton = UIButton(type: .system)
     private let aboutButton = UIButton(type: .system)
 
@@ -20,18 +19,15 @@ final class CounterViewController: UIViewController, CounterViewInput {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
-        label.font = .systemFont(ofSize: 28, weight: .bold)
-        label.textAlignment = .center
-
-        incButton.setTitle("Increment", for: .normal)
+        counterView.buttonTitle = "Increment"
         resetButton.setTitle("Reset", for: .normal)
         aboutButton.setTitle("About", for: .normal)
 
-        incButton.addTarget(self, action: #selector(didTapIncrement), for: .touchUpInside)
+        counterView.action = { [weak self] in self?.didTapIncrement()}
         resetButton.addTarget(self, action: #selector(didTapReset), for: .touchUpInside)
         aboutButton.addTarget(self, action: #selector(didTapAbout), for: .touchUpInside)
 
-        let stack = UIStackView(arrangedSubviews: [label, incButton, resetButton, aboutButton])
+        let stack = UIStackView(arrangedSubviews: [counterView, resetButton, aboutButton])
         stack.axis = .vertical
         stack.spacing = 16
         stack.alignment = .center
@@ -54,7 +50,7 @@ final class CounterViewController: UIViewController, CounterViewInput {
 
     // Presenter -> View
     func render(countText: String, isResetEnabled: Bool) {
-        label.text = countText
+        counterView.text = countText
         resetButton.isEnabled = isResetEnabled
     }
 }

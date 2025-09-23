@@ -9,7 +9,7 @@ import UIKit
 
 class MVCCounterViewController: UIViewController {
     //MARK: Model
-    private var counter = Counter()
+    private var counter = Counter(value: 1)
     //MARK: View
     private let counterView = CounterView()
     
