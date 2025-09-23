@@ -21,19 +21,23 @@ class ViewController: UIViewController {
         mvcNavigationController.tabBarItem = UITabBarItem(title: "MVC", image: UIImage(systemName: "1.circle"), selectedImage: UIImage(systemName: "1.circle.fill"))
 
         let mvvmCombineNavigationController = UINavigationController(rootViewController: MVVMCombineCounterViewController())
-        mvvmCombineNavigationController.tabBarItem = UITabBarItem(title: "MVVM Combine", image: UIImage(systemName: "2.circle"), selectedImage: UIImage(systemName: "2.circle.fill"))
+        mvvmCombineNavigationController.tabBarItem = UITabBarItem(title: "MVVM C", image: UIImage(systemName: "2.circle"), selectedImage: UIImage(systemName: "2.circle.fill"))
 
         let mvvmObservableNavigationController = UINavigationController(rootViewController: MVVMObservableCounterViewController())
-        mvvmObservableNavigationController.tabBarItem = UITabBarItem(title: "MVVM Observable", image: UIImage(systemName: "3.circle"), selectedImage: UIImage(systemName: "3.circle.fill"))
+        mvvmObservableNavigationController.tabBarItem = UITabBarItem(title: "MVVM O", image: UIImage(systemName: "3.circle"), selectedImage: UIImage(systemName: "3.circle.fill"))
 
         let mvvmDelegateNavigationController = UINavigationController(rootViewController: MVVMDelegateCounterViewController())
-        mvvmDelegateNavigationController.tabBarItem = UITabBarItem(title: "MVVM Delegate", image: UIImage(systemName: "4.circle"), selectedImage: UIImage(systemName: "4.circle.fill"))
+        mvvmDelegateNavigationController.tabBarItem = UITabBarItem(title: "MVVM D", image: UIImage(systemName: "4.circle"), selectedImage: UIImage(systemName: "4.circle.fill"))
+        
+        let viperNavigationController = UINavigationController(rootViewController:  CounterModule.build())
+        viperNavigationController.tabBarItem = UITabBarItem(title: "VIPER", image: UIImage(systemName: "5.circle"), selectedImage: UIImage(systemName: "5.circle.fill"))
 
         tabBarController.viewControllers = [
             mvcNavigationController,
             mvvmCombineNavigationController,
             mvvmObservableNavigationController,
-            mvvmDelegateNavigationController
+            mvvmDelegateNavigationController,
+            viperNavigationController
         ]
 
         addChild(tabBarController)
