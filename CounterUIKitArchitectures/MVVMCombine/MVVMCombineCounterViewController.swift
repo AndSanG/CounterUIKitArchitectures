@@ -18,6 +18,7 @@ class MVVMCombineCounterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "MVVM C"
         counterView.buttonTitle = "Increment"
         counterView.action = { [weak self] in
             self?.incrementTapped()

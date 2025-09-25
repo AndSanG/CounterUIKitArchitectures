@@ -16,6 +16,7 @@ class MVVMObservableCounterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "MVVM O"
         
         counterView.buttonTitle = "Increment"
         counterView.action = { [weak self] in

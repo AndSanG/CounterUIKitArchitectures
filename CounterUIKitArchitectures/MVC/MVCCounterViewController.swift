@@ -16,6 +16,7 @@ class MVCCounterViewController: UIViewController {
     //MARK: VC lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "MVC"
         counterView.text = formattedDisplayText(with: counter)
         counterView.buttonTitle = "Increment"
         view.addSubview(counterView)

@@ -16,6 +16,7 @@ class MVVMDelegateCounterViewController: UIViewController, MVVMCounterViewModelD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "MVVM D"
         counterView.buttonTitle = "Increment"
         counterView.action = { [weak self] in
             self?.incrementTapped()

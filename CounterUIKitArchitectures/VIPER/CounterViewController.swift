@@ -17,6 +17,7 @@ final class CounterViewController: UIViewController, CounterViewInput {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "VIPER"
         view.backgroundColor = .systemBackground
 
         counterView.buttonTitle = "Increment"

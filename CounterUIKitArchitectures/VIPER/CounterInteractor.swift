@@ -26,7 +26,7 @@ final class CounterInteractor: CounterInteractorInput {
     }
 
     func reset() {
-        counter.value = 0
+        counter.value = initialCount
         output?.didUpdateCount(counter.value)
     }
 }
