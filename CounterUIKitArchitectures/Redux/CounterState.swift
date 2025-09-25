@@ -8,3 +8,9 @@
 import Foundation
 
 typealias CounterState = Counter
+
+extension CounterState {
+    var reduxFormatted: String {
+        return "Count with Redux: \(value)"
+    }
+}

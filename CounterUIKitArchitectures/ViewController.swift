@@ -39,8 +39,6 @@ class ViewController: UIViewController {
         tabBarController.viewControllers = [
             mvcNavigationController,
             mvvmCombineNavigationController,
-            mvvmObservableNavigationController,
-            mvvmDelegateNavigationController,
             viperNavigationController,
             reduxNavigationController
         ]
