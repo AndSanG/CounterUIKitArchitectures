@@ -31,13 +31,18 @@ class ViewController: UIViewController {
         
         let viperNavigationController = UINavigationController(rootViewController:  CounterModule.build())
         viperNavigationController.tabBarItem = UITabBarItem(title: "VIPER", image: UIImage(systemName: "5.circle"), selectedImage: UIImage(systemName: "5.circle.fill"))
+        
+        let appStore = Store(initial: CounterState(), reducer: counterReducer)
+        let reduxNavigationController = UINavigationController(rootViewController: RxCounterViewController(store: appStore))
+        reduxNavigationController.tabBarItem = UITabBarItem(title: "Redux", image: UIImage(systemName: "6.circle"), selectedImage: UIImage(systemName: "6.circle.fill"))
 
         tabBarController.viewControllers = [
             mvcNavigationController,
             mvvmCombineNavigationController,
             mvvmObservableNavigationController,
             mvvmDelegateNavigationController,
-            viperNavigationController
+            viperNavigationController,
+            reduxNavigationController
         ]
 
         addChild(tabBarController)
